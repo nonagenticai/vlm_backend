@@ -1,0 +1,23 @@
+# Minimal pre-commit config — added by rollout-pip-audit.sh.
+# Adds the standardized pip-audit pre-push hook. Operator should add other
+# hooks (ruff, detect-secrets, etc.) to align with the rest of the fleet.
+#
+# Activate locally: uvx pre-commit install -t pre-commit -t pre-push
+repos:
+  - repo: local
+    hooks:
+      - id: pip-audit
+        name: pip-audit security scan (uv-export → pip-audit)
+        entry: scripts/pip-audit.sh
+        language: system
+        pass_filenames: false
+        stages: [pre-push]
+
+      - id: ty-check-pre-push
+        name: ty type check (pre-push)
+        entry: uv run ty check src/
+        language: system
+        types: [python]
+        pass_filenames: false
+        stages: [pre-push]
+
