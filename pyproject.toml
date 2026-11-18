@@ -7,7 +7,7 @@ requires-python = ">=3.14"
 dependencies = [
     # Hold <0.137: fastapi 0.137 puts _IncludedRouter (no .path) into app.routes,
     # which crashes prometheus-fastapi-instrumentator 8.0.0 (latest) route-name lookup.
-    "fastapi>=0.115.0,<0.137",
+    "fastapi>=0.115.0,<0.164",
     "uvicorn[standard]>=0.32.0",
     "pydantic>=2.9.0",
     "python-dotenv>=1.2.2",
